@@ -12,9 +12,9 @@ import Foundation
 import UIKit
 import AVFoundation // For Camera Permissions
 
-
 class GlobalClass {
 
+    // MARK: ALERT
     class func showAlert(title:String, message: String, presentVW:UIViewController) {
         
         let alertToShow = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -27,16 +27,18 @@ class GlobalClass {
 
     }
     
+    // MARK: Push Views
     class func pushToView(from:UIViewController, withIdentifier:String){
         let scanVC = Constants.mainStoryboard.instantiateViewController(withIdentifier: withIdentifier) 
         from.navigationController?.pushViewController(scanVC, animated: true)
     }
     
     class func pushToWelcomeStoryBoard(from:UIViewController, withIdentifier:String){
-        let scanVC = Constants.welcomeStoryboard.instantiateViewController(withIdentifier: withIdentifier)
-        from.navigationController?.pushViewController(scanVC, animated: true)
+        let welcVC = Constants.welcomeStoryboard.instantiateViewController(withIdentifier: withIdentifier)
+        from.navigationController?.pushViewController(welcVC, animated: true)
     }
     
+    // MARK: Check Camera Permissions handle if user clicked on Don't Allow
     class func checkCameraStatus(completed: @escaping (_ returnBool:Bool) ->()){
         
         if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {

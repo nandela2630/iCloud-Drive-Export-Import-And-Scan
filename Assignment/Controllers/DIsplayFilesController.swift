@@ -10,39 +10,63 @@ import UIKit
 
 class DisplayFilesController: UIViewController {
 
+    //MARK:IBOutlets
+    @IBOutlet weak var topTitle: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var dispayTxtContent: UITextView!
+    
+    // MARK: Declarations
     var fileExtension : String?
     var fileUrl : URL?
     
+    //MARK: Views
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let fileUrl = fileUrl else {
+            GlobalClass.showAlert(title: Constants.alertTitle, message: "Failed to load", presentVW: self)
+            return
+        }
 
-        
-        if fileExtension == "pdf"{
-        
+        if fileExtension == "pdf" || fileExtension == "docx"{
+            
+            topTitle.text = "PDF View"
             imageView.isHidden = true
-            //optional, case PDF -> render
-            if let pdfUrl = fileUrl {
-                 webView.loadRequest(URLRequest(url: pdfUrl))
-            }else{
-                GlobalClass.showAlert(title: Constants.alertTitle, message: "Failed to load", presentVW: self)
-            }
-           
+            dispayTxtContent.isHidden = true
+            //case PDF -> render
+            webView.loadRequest(URLRequest(url: fileUrl))
+    
         }else if fileExtension == "png" || fileExtension == "jpg" || fileExtension == "jpeg"{
             
+            topTitle.text = "Image View"
             webView.isHidden = true
-            if let fileUrl = fileUrl {
-                
+            dispayTxtContent.isHidden = true
+
                 do {
                     let pickedData = try Data.init(contentsOf: fileUrl)
                     imageView.image = UIImage(data: pickedData)
                 }catch {
                     GlobalClass.showAlert(title: Constants.alertTitle, message: "Failed to load", presentVW: self)
-
                 }
+            
+        }else if fileExtension == "txt"{
+            imageView.isHidden = true
+            webView.isHidden = true
+            dispayTxtContent.isHidden = false
+
+            do {
+                dispayTxtContent.text = try String(contentsOf: fileUrl)
+            } catch {
+                print("Failed reading from URL: \(fileUrl), Error: " + error.localizedDescription)
             }
             
+        }else{
+            
+            dispayTxtContent.isHidden = true
+
+            GlobalClass.showAlert(title: Constants.alertTitle, message: "Format viewer is not applicable", presentVW: self)
+
         }
         
     }
@@ -56,6 +80,8 @@ class DisplayFilesController: UIViewController {
         
         self.navigationController?.popViewController(animated: true)
     }
+    
+    
 
 
 }

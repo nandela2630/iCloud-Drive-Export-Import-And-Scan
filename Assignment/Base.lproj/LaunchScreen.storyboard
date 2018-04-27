@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,17 +15,19 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDummyImg" translatesAutoresizingMaskIntoConstraints="NO" id="5tL-Eg-2i1">
-                                <rect key="frame" x="139" y="284" width="97" height="98"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo4" translatesAutoresizingMaskIntoConstraints="NO" id="5tL-Eg-2i1">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.94465096680000005" green="0.93589089520000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5tL-Eg-2i1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="NbG-GC-xWS"/>
-                            <constraint firstItem="5tL-Eg-2i1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qY1-nm-6Hm"/>
+                            <constraint firstItem="5tL-Eg-2i1" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="0dz-RI-7F0"/>
+                            <constraint firstItem="5tL-Eg-2i1" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GwB-Zf-8sK"/>
+                            <constraint firstItem="5tL-Eg-2i1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dbX-s4-taS"/>
+                            <constraint firstItem="5tL-Eg-2i1" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="zy7-HA-nX4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -36,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="profileDummyImg" width="97" height="98"/>
+        <image name="logo4" width="240" height="210"/>
     </resources>
 </document>

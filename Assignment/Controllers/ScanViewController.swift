@@ -11,17 +11,14 @@ import AVFoundation
 class ScanViewController: UIViewController {
 
     @IBOutlet weak var startAndStopBtn: UIButton!
-    
     @IBOutlet weak var messageLabel: UILabel!
+    
     // Declarations
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
-    
     let captureMetadataOutput = AVCaptureMetadataOutput()
-        
     var topTitle:String?
-    
     let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                               AVMetadataObject.ObjectType.code39,
                               AVMetadataObject.ObjectType.code39Mod43,
@@ -34,7 +31,7 @@ class ScanViewController: UIViewController {
                               AVMetadataObject.ObjectType.qr, AVMetadataObject.ObjectType.dataMatrix,AVMetadataObject.ObjectType.code93,AVMetadataObject.ObjectType.interleaved2of5,AVMetadataObject.ObjectType.itf14]
     
     
-    //Views
+    //MARK:Views
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -64,7 +61,8 @@ class ScanViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = false
     }
-  
+    
+    //MARK: Initializers
     func initialize(){
         
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video as the media type parameter.
@@ -133,14 +131,9 @@ class ScanViewController: UIViewController {
                     }
                     
                     
-                    
                 }
                 
-                
             }
-            
-            
-            
             
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
@@ -151,7 +144,8 @@ class ScanViewController: UIViewController {
     }
     
     
-    
+    //MARK:UIButton Actions
+    //Start And Stop
     @IBAction func startAndStopAction(_ sender: UIButton) {
         
         if sender.titleLabel?.text == "Stop Scan" {
@@ -162,8 +156,6 @@ class ScanViewController: UIViewController {
             }
             
             self.captureSession?.stopRunning()
-            
-            
             
         }else{
             
@@ -178,6 +170,7 @@ class ScanViewController: UIViewController {
         }
     }
     
+    //MARK: DE INIT
     deinit {
         captureSession = nil
         videoPreviewLayer = nil
@@ -191,7 +184,6 @@ class ScanViewController: UIViewController {
 extension ScanViewController : AVCaptureMetadataOutputObjectsDelegate {
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection){
-
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
@@ -203,6 +195,7 @@ extension ScanViewController : AVCaptureMetadataOutputObjectsDelegate {
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
         if supportedCodeTypes.contains(metadataObj.type) {
+            
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             
@@ -210,11 +203,9 @@ extension ScanViewController : AVCaptureMetadataOutputObjectsDelegate {
             
             if metadataObj.stringValue != nil {
                 
-                
                 DispatchQueue.main.async {
                     self.messageLabel.text = metadataObj.stringValue
                 }
-                
                 print(metadataObj.stringValue ?? "null")
                 
                // self.delegate?.qrFound(qrStr: metadataObj.stringValue!)

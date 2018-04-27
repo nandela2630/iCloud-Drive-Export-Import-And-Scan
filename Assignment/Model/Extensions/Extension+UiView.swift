@@ -11,7 +11,8 @@ import UIKit
 
 extension UIView {
     
-        func dropShadow() {
+    //for views look
+    func dropShadow() {
             self.layer.masksToBounds = false
             self.layer.shadowColor = UIColor.gray.cgColor
             self.layer.shadowOpacity = 0.6
@@ -19,5 +20,35 @@ extension UIView {
             self.layer.shouldRasterize = true
             self.layer.rasterizationScale = UIScreen.main.scale
             
+    }
+}
+
+extension URL {
+    
+    func getSize() -> String?{
+        
+        do {
+            
+            let fileAttribute: [FileAttributeKey : Any] = try FileManager.default.attributesOfItem(atPath: self.path)
+            
+            if let fileNumberSize: NSNumber = fileAttribute[FileAttributeKey.size] as? NSNumber {
+                let byteCountFormatter: ByteCountFormatter = ByteCountFormatter()
+                byteCountFormatter.countStyle = ByteCountFormatter.CountStyle.file
+                
+                byteCountFormatter.allowedUnits = ByteCountFormatter.Units.useKB
+               
+                return byteCountFormatter.string(fromByteCount: Int64(truncating: fileNumberSize))
+                //byteCountFormatter.allowedUnits = ByteCountFormatter.Units.useMB
+                //return byteCountFormatter.string(fromByteCount: Int64(fileNumberSize))
+            }
+            
+        } catch {
+            print(error.localizedDescription)
+            
+            return nil
         }
+        
+        return nil
+
+    }
 }

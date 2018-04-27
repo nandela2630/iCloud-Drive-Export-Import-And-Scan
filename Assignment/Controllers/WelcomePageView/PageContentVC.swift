@@ -26,7 +26,6 @@ class PageContentVC: UIViewController {
             self.pageControl1.subviews[0].transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }
         
-        //pageControl1.addTarget(self, action: #selector(self.didChangePageControlValue()), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +43,7 @@ class PageContentVC: UIViewController {
         
         if sender.titleLabel?.text == "Next"  {
         
-            customPageViewController?.scrollToNextViewController(btnTitle: (nextBtn1.titleLabel?.text)!)
+        customPageViewController?.scrollToNextViewController(btnTitle: (nextBtn1.titleLabel?.text)!)
             
         }else if sender.titleLabel?.text == "Continue"{
             
@@ -60,16 +59,12 @@ class PageContentVC: UIViewController {
         GlobalClass.pushToView(from: self, withIdentifier: "ViewController")
     }
     
-    @IBAction func valueChanged(_ sender: UIPageControl) {
-        customPageViewController?.scrollToViewController(index: pageControl1.currentPage)
-    }
     /**
      Fired when the user taps on the pageControl to change its current page.
      */
-    func didChangePageControlValue() {
+    @IBAction func valueChanged(_ sender: UIPageControl) {
         customPageViewController?.scrollToViewController(index: pageControl1.currentPage)
     }
-    
     
     func pushToMainView(){
         

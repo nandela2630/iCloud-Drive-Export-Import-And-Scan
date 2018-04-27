@@ -11,10 +11,9 @@ import UIKit
 class DisplayImportFilesCell: UITableViewCell {
 
     @IBOutlet weak var dispImgVW: UIImageView!
-    
     @IBOutlet weak var fileName: UILabel!
-    
     @IBOutlet weak var filleExtension: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +22,6 @@ class DisplayImportFilesCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

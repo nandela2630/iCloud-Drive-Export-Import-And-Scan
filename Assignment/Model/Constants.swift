@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
+var importUrlsArray = [BaseObj]()
+
 struct Constants {
-    
+
     static let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     static let welcomeStoryboard = UIStoryboard(name: "Welcome", bundle: nil)
-
 
     //For Camera Permissions / If user selected Don't allow
     static let alertTitle = "Alert"

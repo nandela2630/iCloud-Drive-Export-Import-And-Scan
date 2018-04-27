@@ -80,7 +80,7 @@ class PageViewController: UIPageViewController {
                            completion: { (finished) -> Void in
                             // Setting the view controller programmatically does not fire
                             // any delegate methods, so we have to manually notify the
-                            // 'tutorialDelegate' of the new index.
+                            // 'customeDelegate' of the new index.
                             self.notifyCustomDelegateOfNewIndex()
         })
     }
@@ -101,7 +101,6 @@ class PageViewController: UIPageViewController {
 
 
 // MARK: UIPageViewControllerDataSource
-
 extension PageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController,

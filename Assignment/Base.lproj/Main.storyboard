@@ -31,25 +31,21 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIq-Fj-tjd">
                                         <rect key="frame" x="8" y="159" width="327" height="45"/>
-                                        <color key="backgroundColor" red="0.94465096680000005" green="0.93589089520000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.86776130526396777" blue="0.92851811577119925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
-                                        <state key="normal" title="import/export from iCloud drive">
-                                            <color key="titleColor" red="0.94117647059999998" green="0.35294117650000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
+                                        <state key="normal" title="Import/Export from iCloud drive"/>
                                         <connections>
                                             <action selector="fetchFromiCloud:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ygS-L5-gfv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3CX-vU-Qtv">
                                         <rect key="frame" x="8" y="86" width="327" height="45"/>
-                                        <color key="backgroundColor" red="0.95026620117499994" green="0.93589089520000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.72133658480141061" green="0.89374050124992688" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Sho-Md-6zS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
-                                        <state key="normal" title="Start Scanning any Barcode/QR Code">
-                                            <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
+                                        <state key="normal" title="Start Scanning any Barcode/QR Code"/>
                                         <connections>
                                             <action selector="scanAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jCd-H3-h6u"/>
                                         </connections>
@@ -181,7 +177,7 @@
                                 </constraints>
                             </imageView>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5s-W3-3q6">
-                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <color key="backgroundColor" red="0.36078431372549019" green="0.38823529411764707" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWx-rm-zFT">
@@ -198,15 +194,31 @@
                                             <action selector="popToBack:" destination="6RQ-GP-0bH" eventType="touchUpInside" id="bnu-6q-uEX"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR4-wd-TXd">
+                                        <rect key="frame" x="138.5" y="34" width="97" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.63137254899999995" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="BrQ-n9-hJ9"/>
                                     <constraint firstAttribute="bottom" secondItem="aTA-Nf-3KN" secondAttribute="bottom" constant="4" id="Ef7-t2-Twb"/>
+                                    <constraint firstItem="JR4-wd-TXd" firstAttribute="top" secondItem="UWx-rm-zFT" secondAttribute="top" constant="34" id="INF-He-Dh3"/>
+                                    <constraint firstItem="JR4-wd-TXd" firstAttribute="centerX" secondItem="UWx-rm-zFT" secondAttribute="centerX" id="L9E-Ha-Pki"/>
                                     <constraint firstItem="aTA-Nf-3KN" firstAttribute="leading" secondItem="UWx-rm-zFT" secondAttribute="leading" id="X3c-ya-d7M"/>
                                     <constraint firstItem="aTA-Nf-3KN" firstAttribute="top" secondItem="UWx-rm-zFT" secondAttribute="top" constant="20" id="Z57-Jc-Tzd"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ENy-Le-8uA">
+                                <rect key="frame" x="7" y="81" width="359" height="574"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="0.0" green="0.65098039220000004" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -214,8 +226,12 @@
                             <constraint firstItem="36S-Mw-NuU" firstAttribute="leading" secondItem="Kh5-KT-MT4" secondAttribute="leading" id="EK0-Ap-Ddw"/>
                             <constraint firstItem="UWx-rm-zFT" firstAttribute="leading" secondItem="Kh5-KT-MT4" secondAttribute="leading" id="N29-ST-dd3"/>
                             <constraint firstItem="x5s-W3-3q6" firstAttribute="leading" secondItem="Kh5-KT-MT4" secondAttribute="leading" id="OYW-si-wbp"/>
+                            <constraint firstItem="Kh5-KT-MT4" firstAttribute="trailing" secondItem="ENy-Le-8uA" secondAttribute="trailing" constant="9" id="Qjr-Vy-GMG"/>
                             <constraint firstItem="36S-Mw-NuU" firstAttribute="trailing" secondItem="Kh5-KT-MT4" secondAttribute="trailing" id="UfG-nx-7aK"/>
-                            <constraint firstItem="x5s-W3-3q6" firstAttribute="top" secondItem="UWx-rm-zFT" secondAttribute="bottom" constant="2" id="aZr-aA-WRP"/>
+                            <constraint firstItem="Kh5-KT-MT4" firstAttribute="bottom" secondItem="ENy-Le-8uA" secondAttribute="bottom" constant="12" id="ZgS-Na-cEA"/>
+                            <constraint firstItem="ENy-Le-8uA" firstAttribute="leading" secondItem="Kh5-KT-MT4" secondAttribute="leading" constant="7" id="aOb-oI-KMN"/>
+                            <constraint firstItem="x5s-W3-3q6" firstAttribute="top" secondItem="UWx-rm-zFT" secondAttribute="bottom" constant="1" id="aZr-aA-WRP"/>
+                            <constraint firstItem="ENy-Le-8uA" firstAttribute="top" secondItem="UWx-rm-zFT" secondAttribute="bottom" constant="8" id="bNg-Tq-zdJ"/>
                             <constraint firstItem="x5s-W3-3q6" firstAttribute="trailing" secondItem="Kh5-KT-MT4" secondAttribute="trailing" id="bVh-FY-1mO"/>
                             <constraint firstItem="x5s-W3-3q6" firstAttribute="bottom" secondItem="Kh5-KT-MT4" secondAttribute="bottom" id="kwd-bH-MhO"/>
                             <constraint firstItem="UWx-rm-zFT" firstAttribute="trailing" secondItem="Kh5-KT-MT4" secondAttribute="trailing" id="pIV-Rp-wR1"/>
@@ -225,7 +241,9 @@
                         <viewLayoutGuide key="safeArea" id="Kh5-KT-MT4"/>
                     </view>
                     <connections>
+                        <outlet property="dispayTxtContent" destination="ENy-Le-8uA" id="MR4-WE-FUF"/>
                         <outlet property="imageView" destination="36S-Mw-NuU" id="fW3-Op-LqI"/>
+                        <outlet property="topTitle" destination="JR4-wd-TXd" id="pbs-9F-qXA"/>
                         <outlet property="webView" destination="x5s-W3-3q6" id="erA-Sg-IUC"/>
                     </connections>
                 </viewController>
@@ -319,7 +337,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODq-L7-0VC">
                                         <rect key="frame" x="112" y="31" width="129" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="import from iCloud">
+                                        <state key="normal" title="Import from iCloud">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -377,14 +395,12 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCx-Bs-olg">
                                 <rect key="frame" x="24" y="615" width="327" height="45"/>
-                                <color key="backgroundColor" red="0.94465096680000005" green="0.93589089520000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.94718409193421116" blue="0.75542256912600958" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="mhj-bU-HHY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="16"/>
-                                <state key="normal" title="Upload to iCloud">
-                                    <color key="titleColor" red="0.94117647059999998" green="0.35294117650000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <state key="normal" title="Upload to iCloud"/>
                                 <connections>
                                     <action selector="exportToiCloudAction:" destination="3Ih-e1-XZZ" eventType="touchUpInside" id="EOF-tg-xbw"/>
                                 </connections>

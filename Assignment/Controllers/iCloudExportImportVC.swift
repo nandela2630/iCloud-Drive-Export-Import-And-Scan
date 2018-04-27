@@ -11,6 +11,7 @@ import MobileCoreServices
 
 class iCloudExportImportVC: UIViewController {
 
+    // MARK: IBOutlets
     @IBOutlet weak var takeAPicVW: UIView!
     @IBOutlet weak var smileLabel: UILabel!
     @IBOutlet weak var dispImgDummy: UIImageView!
@@ -18,13 +19,13 @@ class iCloudExportImportVC: UIViewController {
     @IBOutlet weak var uploadToiCloudBtn: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    //MARK: Declarations
     let imagePicker = UIImagePickerController()
     var imageViewObject  = UIImageView()
     var imageUrl : URL?
-    
     var filterSearchArray = [BaseObj]()
 
-    
+    // MARK: VIEWS
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -69,14 +70,14 @@ class iCloudExportImportVC: UIViewController {
     
     @IBAction func exportToiCloudAction(_ sender: UIButton) {
         
-        if let url = imageUrl {
-            
-            exportToiCloud(fileUrl: url)
-        
-        }else{
-            
-            GlobalClass.showAlert(title: Constants.alertTitle, message: "Please choose image", presentVW: self)
+        guard let url = imageUrl else {
+            GlobalClass.showAlert(title: Constants.alertTitle, message: "Please tap on view and choose image", presentVW: self)
+            return
         }
+            
+        exportToiCloud(fileUrl: url)
+        
+        
     }
     
     @IBAction func popToBack(_ sender: UIButton) {
@@ -84,14 +85,15 @@ class iCloudExportImportVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    //MARK: De Init
     deinit {
-        
         filterSearchArray.removeAll()
         importUrlsArray.removeAll()
     }
     
 }
 
+// MARK: UITableViewDelegates
 extension iCloudExportImportVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,7 +105,7 @@ extension iCloudExportImportVC : UITableViewDelegate, UITableViewDataSource {
         
         let selectObj = filterSearchArray[indexPath.row]
         cell.fileName.text = selectObj.fileName ?? "NA"
-        cell.filleExtension.text = selectObj.exTnsion ?? "NA"
+        cell.filleExtension.text = "\(selectObj.pathUrl?.getSize() ?? "0") \(selectObj.exTnsion ?? "NA")"
         
         if selectObj.exTnsion == "jpg" || selectObj.exTnsion == "png" || selectObj.exTnsion == "jpeg"{
         
@@ -119,10 +121,9 @@ extension iCloudExportImportVC : UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
         let selectObj = filterSearchArray[indexPath.row]
-        
         print(selectObj.fileName as Any)
-        
         let dispVC = Constants.mainStoryboard.instantiateViewController(withIdentifier: "DisplayFilesController") as! DisplayFilesController
         dispVC.fileExtension = selectObj.exTnsion
         dispVC.fileUrl = selectObj.pathUrl
@@ -161,27 +162,24 @@ extension iCloudExportImportVC : UIDocumentPickerDelegate {
             
             importUrlsArray.append(baseObj)
             filterSearchArray = importUrlsArray
+            
+            DispatchQueue.main.async {
+                
+                self.dispImgDummy.isHidden = false
+                self.smileLabel.isHidden = false
+                self.imageViewObject.removeFromSuperview()
+                
+                self.tableView.delegate = self
+                self.tableView.dataSource = self
+                self.tableView.reloadData()
+            }
            
             
         }else if controller.documentPickerMode == .exportToService{
             
-            
-            GlobalClass.showAlert(title: Constants.alertTitle, message: "Uploaded to iCloud drive", presentVW: self)
+            GlobalClass.showAlert(title: Constants.alertTitle, message: "Successfully! Uploaded to iCloud drive", presentVW: self)
         }
         
-        
-        DispatchQueue.main.async {
-            
-            self.dispImgDummy.isHidden = false
-            self.smileLabel.isHidden = false
-            self.imageViewObject.removeFromSuperview()
-            
-            
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
-            self.tableView.reloadData()
-        }
-       
         
     }
     
@@ -189,8 +187,16 @@ extension iCloudExportImportVC : UIDocumentPickerDelegate {
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         
         print("Cancelled")
+        if controller.documentPickerMode == .import {
+       
+            GlobalClass.showAlert(title: Constants.alertTitle, message: "If you don't find any files in iCloud, please sync your iCloud or add some files to iCloud from ur iPhone", presentVW: self)
+
+        }else{
+            
+        }
         
     }
+    
     
 }
 
@@ -228,6 +234,7 @@ extension iCloudExportImportVC : UIImagePickerControllerDelegate, UINavigationCo
     
 }
 
+// MARK: Functions
 extension iCloudExportImportVC {
     
     func importFromiCloud(){
@@ -312,7 +319,6 @@ extension iCloudExportImportVC : UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         if searchBar.text?.isEmpty == true {
-            
             filterSearchArray.removeAll()
             filterSearchArray = importUrlsArray
             self.tableView.reloadData()
@@ -326,7 +332,7 @@ extension iCloudExportImportVC : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if searchBar.text?.characters.count == 0 {
+        if searchBar.text?.count == 0 {
             
             filterSearchArray.removeAll()
             filterSearchArray = importUrlsArray
